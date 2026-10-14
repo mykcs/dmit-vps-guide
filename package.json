@@ -1,0 +1,14 @@
+{
+  "name": "dmit-vps-guide",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dependency-free public DMIT VPS educational guide",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs && node scripts/check.mjs && node --check site/main.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
