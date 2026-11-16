@@ -10,3 +10,7 @@ This is a PUBLIC guide. Only researched official product facts, educational exam
 - For routing claims, measure on the actual ingress ISP and desired egress destinations; do not infer from product label alone.
 - This is not an automated VPN deployment service, VPN reseller, billing portal or user-data collector.
 - Keep deployment dependency-free and static unless a proven requirement justifies it; no tracking, cookies, external fonts or added workflow secrets.
+
+## Current | 多 Agent 接手
+
+新 Agent 先读 [Current](docs/agents/current/README.md)，重新核对 GitHub 的实时 Issues、PR 和默认分支；Current 只负责恢复上下文，不取代现有 Wish/Dev、科研或发布规则。
