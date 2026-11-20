@@ -4,7 +4,7 @@ const assert=require('node:assert/strict');
  const browser=await chromium.launch({headless:true});
  try{
   for(const width of [1280,900,440]){
-   const page=await browser.newPage({viewport:{width,height:956},reducedMotion:'no-preference'});
+   const page=await browser.newPage({viewport:{width,height:956},reducedMotion:'no-preference',hasTouch:width===440,isMobile:width===440});
    const errors=[];page.on('pageerror',e=>errors.push(e.message));
    let res=await page.goto((process.env.SITE_ORIGIN || 'http://127.0.0.1:4192/'),{waitUntil:'load'});
    assert.equal(res.status(),200);
@@ -14,6 +14,12 @@ const assert=require('node:assert/strict');
    assert.ok(overflow<=2,'horizontal overflow '+width+': '+overflow);
    const nav=page.locator('.desktop-nav a').first();
    if(width>780){
+    const headerFit=await page.evaluate(()=>{
+      const nav=document.querySelector('.desktop-nav').getBoundingClientRect();
+      const action=document.querySelector('.topbar-action').getBoundingClientRect();
+      return {navRight:nav.right,actionLeft:action.left};
+    });
+    assert.ok(headerFit.navRight+4<=headerFit.actionLeft,'desktop nav should not overlap official link '+width+': '+JSON.stringify(headerFit));
     const before=await nav.evaluate(el=>({r:el.getBoundingClientRect().toJSON(),bg:getComputedStyle(el).backgroundColor}));
     await nav.hover();await page.waitForTimeout(270);
     const after=await nav.evaluate(el=>({r:el.getBoundingClientRect().toJSON(),bg:getComputedStyle(el).backgroundColor}));
@@ -38,6 +44,8 @@ const assert=require('node:assert/strict');
   const p=await browser.newPage({reducedMotion:'reduce'});
   await p.goto((process.env.SITE_ORIGIN || 'http://127.0.0.1:4192/'),{waitUntil:'load'});
   assert.equal(await p.locator('.action-icon').first().evaluate(el=>getComputedStyle(el).transitionDuration),'0s');
+  const button=p.locator('.button').first();await button.hover();
+  assert.equal(await button.evaluate(el=>getComputedStyle(el).transform),'none','reduced motion no button movement');
   console.log('PASS reduced motion');
   await p.close();
  } finally{await browser.close()}

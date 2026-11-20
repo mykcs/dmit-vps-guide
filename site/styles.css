@@ -259,5 +259,6 @@ button:disabled{cursor:not-allowed}
 }
 @media(prefers-reduced-motion:reduce){
  .desktop-nav a,.topbar-action,.button .action-icon,.filter-button,.install-tab,.copy-code,.faq-list summary,.source-links a{transition:none!important}
+ .button:hover{transform:none!important}
  .button:hover .action-icon{transform:none!important}
 }
