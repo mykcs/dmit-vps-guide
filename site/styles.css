@@ -228,3 +228,37 @@ button:disabled{cursor:not-allowed}
 @media(max-width:780px){.desktop-nav{display:none}.topbar-action{font-size:11px}.nav-inner{height:64px}.hero{display:flex;flex-direction:column;align-items:stretch;padding-top:53px;padding-bottom:49px;gap:38px}.hero h1{font-size:clamp(47px,9vw,70px)}.hero-copy{padding-right:0}.hero-visual{max-width:650px;margin:0;width:100%;align-self:center}.hero-caption{line-height:1.9}.strip-inner{grid-template-columns:1fr}.strip-inner>div{padding:13px 0;border-right:0;border-bottom:1px solid #dce5d9}.strip-inner>div:last-child{border-bottom:0}.section{padding-top:68px;padding-bottom:74px}.section-head{display:block;margin-bottom:30px}.section-intro{max-width:580px;margin-top:15px}.basics-grid,.node-grid,.route-grid,.choice-cards{grid-template-columns:1fr}.basic-card{min-height:250px}.basic-illustration{height:70px}.node-card p{min-height:0}.node-map{height:130px}.route-card>p{min-height:0}.platforms{grid-template-columns:1fr;gap:10px;margin-top:45px}.choice-card{min-height:205px}.estimator{grid-template-columns:1fr 1fr}.estimator-text{grid-column:1/-1}.step-list{grid-template-columns:1fr}.safe-grid{grid-template-columns:1fr}.sources-inner{grid-template-columns:1fr;gap:24px}.source-links{max-width:650px}.faq-section{padding-bottom:72px}}
 @media(max-width:540px){.shell{padding-left:20px;padding-right:20px}.topbar-action{padding:7px 10px}.wordmark{font-size:11px;gap:6px}.hero{padding-top:40px}.hero h1{font-size:45px;line-height:1.23;margin-top:19px}.hero-lede{font-size:14px}.button{padding:10px 14px;font-size:12px;gap:10px}.visual-topline{padding:16px 15px 3px}.visual-foot{padding:13px;gap:6px}.visual-foot strong{font-size:10px}.visual-foot-label{font-size:8px}.section-head h2,.sources-inner h2{font-size:36px}.node-card{padding:20px}.decode{padding:21px 16px}.decode-tokens{gap:5px}.decode-tokens>i{font-size:16px;line-height:30px}.token{min-width:62px;padding:9px 7px 7px;font-size:15px}.token small{font-size:9px}.platform-list>div{gap:9px}.platform-list b{font-size:12px}.platform-list small{padding-left:0;margin-top:0}.comparison-heading{display:block;margin-top:53px}.filter-group{margin-top:16px;width:max-content;max-width:100%}.price-disclaimer{flex-direction:column;align-items:start;gap:10px}.estimator{grid-template-columns:1fr;padding:22px;gap:20px}.estimator-text{grid-column:auto}.estimator-result{min-height:140px}.timeline{grid-template-columns:1fr;margin-bottom:22px}.timeline>div{padding:9px 17px}.timeline b{font-size:22px}.install-tab{padding:12px 9px;gap:7px}.tab-number{font-size:24px}.install-tab b{font-size:12px}.install-tab small{font-size:10px}.install-panel{padding-top:24px}.guide-header{display:block}.guide-header h3{font-size:24px}.guide-header>a{display:inline-block;margin-top:6px}.step-list li{padding-left:35px}.deploy-flow{padding:14px 12px;gap:8px}.deploy-flow strong{font-size:11px}.deploy-flow small{font-size:8px}.deploy-flow>span{font-size:15px}.publish-grid{grid-template-columns:1fr}.truth-table{display:block}.truth-table p{margin-top:8px}.footer-inner{display:block}.footer-inner p{margin:11px 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+
+/* Interaction craft, 2026-11-20: preserve this guide's restrained field-notes look.
+   All hover emphasis lives in the existing component geometry; no new motion engine. */
+:root{--craft-ease:cubic-bezier(.2,.72,.2,1);--craft-time:210ms;--craft-hover:#edf4e8}
+.desktop-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:7px 9px;margin-inline:-3px;border-radius:6px;transition:background-color var(--craft-time) var(--craft-ease),color var(--craft-time) var(--craft-ease)}
+.topbar-action{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;transition:background-color var(--craft-time) var(--craft-ease),border-color var(--craft-time) var(--craft-ease)}
+.topbar-action span{inline-size:20px;block-size:20px;display:inline-grid;place-items:center;font-size:14px;margin:0;flex:0 0 auto;border-radius:50%;border:1px solid #c4d8ca}
+.button{justify-content:space-between;min-height:44px;gap:16px}
+.button .action-icon{inline-size:24px;block-size:24px;display:inline-grid;place-items:center;flex:0 0 auto;border-radius:50%;border:1px solid currentColor;font-size:16px;line-height:1;transition:transform var(--craft-time) var(--craft-ease),background-color var(--craft-time) var(--craft-ease)}
+.button-solid .action-icon{border-color:rgba(255,255,255,.55)}
+.filter-button,.install-tab,.copy-code,.faq-list summary,.source-links a{transition:color var(--craft-time) var(--craft-ease),background-color var(--craft-time) var(--craft-ease),border-color var(--craft-time) var(--craft-ease)}
+.filter-button{min-height:36px}
+.install-tab .tab-number{min-width:42px;display:inline-flex;justify-content:center}
+.faq-list summary{border-radius:4px}
+@media(hover:hover) and (pointer:fine){
+ .desktop-nav a:hover,.desktop-nav a:focus-visible{background:var(--craft-hover);color:#245945;text-decoration:none}
+ .topbar-action:hover{background:#e5efe6;border-color:#87b29b}
+ .topbar-action:hover span{border-color:#6b9d80}
+ .button:hover .action-icon{transform:translateX(2px)}
+ .filter-button:not(.selected):hover{background:#e2ece0;color:#245b42}
+ .install-tab:not(.active):hover{background:#f2f7ee;border-color:#9cbca4}
+ .faq-list summary:hover{background:#edf5ea}
+ .source-links a:hover{background:#edf5ea}
+}
+@media(max-width:1010px) and (min-width:781px){
+ .desktop-nav{gap:9px}
+ .desktop-nav a{padding-inline:6px;margin-inline:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .desktop-nav a,.topbar-action,.button .action-icon,.filter-button,.install-tab,.copy-code,.faq-list summary,.source-links a{transition:none!important}
+ .button:hover{transform:none!important}
+ .button:hover .action-icon{transform:none!important}
+}
